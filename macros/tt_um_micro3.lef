@@ -2,9 +2,9 @@ VERSION 5.7 ;
   NOWIREEXTENSIONATPIN ON ;
   DIVIDERCHAR "/" ;
   BUSBITCHARS "[]" ;
-MACRO tt_um_devinatkin_crc
+MACRO tt_um_micro3
   CLASS BLOCK ;
-  FOREIGN tt_um_devinatkin_crc ;
+  FOREIGN tt_um_micro3 ;
   ORIGIN 0.000 0.000 ;
   SIZE 65.000 BY 50.000 ;
   PIN VGND
@@ -255,6 +255,6 @@ MACRO tt_um_devinatkin_crc
         RECT 60.880 8.590 64.760 10.450 ;
         RECT 60.880 8.310 63.720 8.590 ;
   END
-END tt_um_devinatkin_crc
+END tt_um_micro3
 END LIBRARY
 
