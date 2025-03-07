@@ -232,59 +232,17 @@ def update_lef_file(input_lef_file,output_lef_file, new_name):
 
     print(f"Renamed module in '{input_lef_file}' to '{new_name}' and saved to '{output_lef_file}'.")
 
-download_tt_submission_artifact(giturl_1, "tt_um_micro1.zip")
+for i, (giturl, top_gds_name) in enumerate(zip(
+    [giturl_1, giturl_2, giturl_3, giturl_4],
+    [top_gds_name1, top_gds_name2, top_gds_name3, top_gds_name4]
+)):
+    zip_filename = f"{top_gds_name}.zip"
+    dir_name = top_gds_name
 
-unzip_tt_submission_artifact("tt_um_micro1.zip", "tt_um_micro1")
-
-grab_relevant_submission_files("tt_um_micro1/tt_submission", ".", "tt_um_micro1")
-
-rename_top_cell("tt_um_micro1.gds", "tt_um_micro1.gds", "tt_um_micro1")
-
-update_lef_file("tt_um_micro1.lef", "tt_um_micro1.lef", "tt_um_micro1")
-
-rename_verilog_module("tt_um_micro1.v", "tt_um_micro1.v", "tt_um_micro1")
-
-clean_up("tt_um_micro1", "tt_um_micro1.zip")
-
-download_tt_submission_artifact(giturl_2, "tt_um_micro2.zip")
-
-unzip_tt_submission_artifact("tt_um_micro2.zip", "tt_um_micro2")
-
-grab_relevant_submission_files("tt_um_micro2/tt_submission", ".", "tt_um_micro2")
-
-rename_top_cell("tt_um_micro2.gds", "tt_um_micro2.gds", "tt_um_micro2")
-
-update_lef_file("tt_um_micro2.lef", "tt_um_micro2.lef", "tt_um_micro2")
-
-rename_verilog_module("tt_um_micro2.v", "tt_um_micro2.v", "tt_um_micro2")
-
-clean_up("tt_um_micro2", "tt_um_micro2.zip")
-
-download_tt_submission_artifact(giturl_3, "tt_um_micro3.zip")
-
-unzip_tt_submission_artifact("tt_um_micro3.zip", "tt_um_micro3")
-
-grab_relevant_submission_files("tt_um_micro3/tt_submission", ".", "tt_um_micro3")
-
-rename_top_cell("tt_um_micro3.gds", "tt_um_micro3.gds", "tt_um_micro3")
-
-update_lef_file("tt_um_micro3.lef", "tt_um_micro3.lef", "tt_um_micro3")
-
-rename_verilog_module("tt_um_micro3.v", "tt_um_micro3.v", "tt_um_micro3")
-
-clean_up("tt_um_micro3", "tt_um_micro3.zip")
-
-download_tt_submission_artifact(giturl_4, "tt_um_micro4.zip")
-
-unzip_tt_submission_artifact("tt_um_micro4.zip", "tt_um_micro4")
-
-grab_relevant_submission_files("tt_um_micro4/tt_submission", ".", "tt_um_micro4")
-
-rename_top_cell("tt_um_micro4.gds", "tt_um_micro4.gds", "tt_um_micro4")
-
-update_lef_file("tt_um_micro4.lef", "tt_um_micro4.lef", "tt_um_micro4")
-
-rename_verilog_module("tt_um_micro4.v", "tt_um_micro4.v", "tt_um_micro4")
-
-clean_up("tt_um_micro4", "tt_um_micro4.zip")
-
+    download_tt_submission_artifact(giturl, zip_filename)
+    unzip_tt_submission_artifact(zip_filename, dir_name)
+    grab_relevant_submission_files(f"{dir_name}/tt_submission", ".", top_gds_name)
+    rename_top_cell(f"{top_gds_name}.gds", f"{top_gds_name}.gds", top_gds_name)
+    update_lef_file(f"{top_gds_name}.lef", f"{top_gds_name}.lef", top_gds_name)
+    rename_verilog_module(f"{top_gds_name}.v", f"{top_gds_name}.v", top_gds_name)
+    clean_up(dir_name, zip_filename)
