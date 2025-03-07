@@ -4,16 +4,9 @@ import os
 import zipfile
 import shutil
 import gdstk
+import yaml
 
-giturl_1 = "https://github.com/devinatkin/tt10_alu"
-giturl_2 = "https://github.com/devinatkin/tt10_vga_test"
-giturl_3 = "https://github.com/devinatkin/tt10_pwm_loop"
-giturl_4 = "https://github.com/devinatkin/tt10_crc_calc"
 
-top_gds_name1 = "tt_um_micro1"
-top_gds_name2 = "tt_um_micro2"
-top_gds_name3 = "tt_um_micro3"
-top_gds_name4 = "tt_um_micro4"
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
@@ -135,7 +128,6 @@ def grab_relevant_submission_files(search_directory, output_directory, new_basen
             shutil.copy2(file_path, new_file)
             print(f"Copied {file} to {new_file}")
 
-
 def clean_up(directory, zip_file):
     if os.path.exists(zip_file):
         os.remove(zip_file)
@@ -231,6 +223,21 @@ def update_lef_file(input_lef_file,output_lef_file, new_name):
             file.write(line)
 
     print(f"Renamed module in '{input_lef_file}' to '{new_name}' and saved to '{output_lef_file}'.")
+
+def extract_micro_tiles(info_yaml = "../info.yaml"):
+    """
+    Extract the micro tiles from the info.yaml file.
+    """
+    with open(info_yaml, "r") as file:
+        info = yaml.safe_load(file)
+    micro_tiles = info.get("project", {}).get("micro_tiles", [])
+    return micro_tiles
+
+giturl_1, giturl_2, giturl_3, giturl_4 = extract_micro_tiles()
+top_gds_name1 = "tt_um_micro1"
+top_gds_name2 = "tt_um_micro2"
+top_gds_name3 = "tt_um_micro3"
+top_gds_name4 = "tt_um_micro4"
 
 for i, (giturl, top_gds_name) in enumerate(zip(
     [giturl_1, giturl_2, giturl_3, giturl_4],

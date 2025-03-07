@@ -19,6 +19,12 @@ project:
   source_files:
     - "project.v"
 
+  micro_tiles:
+    - "https://github.com/devinatkin/tt10_alu"
+    - "https://github.com/devinatkin/tt10_vga_test"
+    - "https://github.com/devinatkin/tt10_pwm_loop"
+    - "https://github.com/devinatkin/tt10_crc_calc"
+
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
